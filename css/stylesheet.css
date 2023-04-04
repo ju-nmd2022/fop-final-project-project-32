@@ -8,3 +8,41 @@
     --pietYellow: rgb(243, 247, 6);
     --pietRed: rgb(249, 17, 17);
 }
+.Look{
+    width: 80vw;
+}
+/* 
+The grid is based of one of Piet Mondrain paintings, see in misc folder
+The naming system is:
+The first letter refer if it's the Big or Small
+Then the Color after
+the expation to the rule is BL as big black would have same as big blue
+thus blue is Bl
+
+Why only 2 letter? To make it possible to see the grid in text form easier
+
+*/
+
+.startWrap{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 6fr 2fr 2fr 1fr;
+    grid-template-rows: 3fr 5fr 5fr 2fr 2fr 1fr 2fr;
+    grid-template-areas: 
+    ".  .  .  .  BY BY . "
+    ".  BR BR BR BY BY . "
+    ".  BR BR BR .  .  . "
+    ".  BB BB .  .  .  . "
+    "SY BB BB .  BL BL SR"
+    "SY .  .  SB BL BL SR"
+    "SY .  .  .  .  .  SR"
+    ;
+}
+
+
+
+.startOptions{
+    grid-area: BR;
+    background-color: var(--pietRed);
+}
