@@ -1,0 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+:root {
+    --pietBlue: rgb(50, 81, 255);
+    --pietYellow: rgb(243, 247, 6);
+    --pietRed: rgb(249, 17, 17);
+}
