@@ -7,6 +7,7 @@
     --pietBlue: rgb(50, 81, 255);
     --pietYellow: rgb(243, 247, 6);
     --pietRed: rgb(249, 17, 17);
+    --pietBlack:rgb(0,0,0);
 }
 .Look{
     width: 80vw;
@@ -24,8 +25,8 @@ Why only 2 letter? To make it possible to see the grid in text form easier
 */
 
 .startWrap{
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     display: grid;
     grid-template-columns: 1fr 2fr 6fr 2fr 2fr 1fr;
     grid-template-rows: 3fr 5fr 5fr 2fr 2fr 1fr 2fr;
@@ -40,9 +41,62 @@ Why only 2 letter? To make it possible to see the grid in text form easier
     ;
 }
 
-
-
 .startOptions{
     grid-area: BR;
     background-color: var(--pietRed);
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+    align-items: center;
+    gap: 2rem;
 }
+.startOptions button{
+    border: 0.3rem solid ;
+    padding: 1rem;
+    width: 15rem;
+}
+.startOptions button a{
+    color: inherit;
+    text-decoration: none;
+}
+div, article{
+    border: 0.3rem solid ;
+    
+}
+.startWrap div{
+    width: 100%;
+    height: 100%;
+}
+.colorBlock1{
+    grid-area: BY;
+    background-color: var(--pietYellow);
+}
+
+.colorBlock2{
+    grid-area: SY;
+    background-color: var(--pietYellow);
+}
+
+.colorBlock3{
+    grid-area: BB;
+    background-color: var(--pietBlack);
+}
+
+.colorBlock4{
+    grid-area: SB;
+    background-color:var(--pietBlack) ;
+}
+
+.colorBlock5{
+    grid-area: BL;
+    background-color: var(--pietBlue);
+}
+
+.colorBlock6{
+    grid-area: SR;
+    background-color: var(--pietRed);
+}
+
+/* -------------------------------------------- */
+/*                   Game                      */
+/* ------------------------------------------ */
