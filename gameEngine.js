@@ -1,5 +1,3 @@
-console.log("I ran")
-
 const stockInRow = 6
 const stockInCol = 8
 const stockInCombs = 3
@@ -32,6 +30,7 @@ function addComb(inComb){
     console.log(colRand)
     if(colRand<1){
         let combCol = "R"
+        console.log("Red is made")
     }if (colRand === 1) {
         let combCol = "B"
     } else {
@@ -70,7 +69,10 @@ function addComb(inComb){
 
 
 }
+console.log(grid)
 console.log(1<2)
 genGrid(stockInRow,stockInCol)
+// addComb(stockInCombs)
+// console.log(grid)
 
 console.log(grid[0].length)
