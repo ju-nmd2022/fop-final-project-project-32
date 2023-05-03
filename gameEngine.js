@@ -26,15 +26,16 @@ function addComb(inComb){
     
 
     // Random color for the Comb
-    let colRand = Math.round(Math.random(3)) 
+    let colRand = Math.floor(Math.random()*3) 
     console.log(colRand)
+    let combCol;
     if(colRand<1){
-        let combCol = "R"
+        combCol = "R"
         console.log("Red is made")
-    }if (colRand === 1) {
-        let combCol = "B"
+    }else if (colRand === 1) {
+        combCol = "B"
     } else {
-        let combCol = "Y"
+         combCol = "Y"
     }
 
 
@@ -43,36 +44,30 @@ function addComb(inComb){
     let rowCount = grid.length
     let colCount = grid[0].length
     let combCount = 0
+
+    // for loop here
     while(combCount < inComb){
 
 
 
-        let randRow = Math.round(Math.random(rowCount))
-        let randCol = Math.round(Math.random(colCount))
+        let randRow = Math.floor(Math.random()*rowCount)
+        let randCol = Math.floor(Math.random()*colCount)
 
-        if(grid[randRow][randCol] != ""){
+        if(grid[randRow][randCol] === ""){
            grid[randRow][randCol] = combCol 
            combCount++
         }
         
-
         
     }
-
     
-    
-    
-    
-    
-    
-
 
 
 }
 console.log(grid)
-console.log(1<2)
+
 genGrid(stockInRow,stockInCol)
-// addComb(stockInCombs)
-// console.log(grid)
+addComb(stockInCombs)
+console.log(grid)
 
 console.log(grid[0].length)
