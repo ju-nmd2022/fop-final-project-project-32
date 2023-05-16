@@ -8,6 +8,8 @@
     --pietYellow: rgb(243, 247, 6);
     --pietRed: rgb(249, 17, 17);
     --pietBlack:rgb(0,0,0);
+    --pietDarkGrey:rgb(105, 105, 105);
+    --borderThickness: 0.3rem ;
 }
 .Look{
     width: 80vw;
@@ -25,7 +27,7 @@ Why only 2 letter? To make it possible to see the grid in text form easier
 */
 
 .startWrap{
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr 2fr 6fr 2fr 2fr 1fr;
@@ -39,6 +41,7 @@ Why only 2 letter? To make it possible to see the grid in text form easier
     "SY .  .  SB BL BL SR"
     "SY .  .  .  .  .  SR"
     ;
+    border: none;
 }
 
 .startOptions{
@@ -60,12 +63,13 @@ Why only 2 letter? To make it possible to see the grid in text form easier
     text-decoration: none;
 }
 div, article{
-    border: 0.3rem solid ;
+    border: var(--borderThickness) solid ;
     
 }
 .startWrap div{
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
 }
 .colorBlock1{
     grid-area: BY;
@@ -100,3 +104,42 @@ div, article{
 /* -------------------------------------------- */
 /*                   Game                      */
 /* ------------------------------------------ */
+
+
+.gameWrap{
+    background-color: salmon;
+    height: 100vh;
+    width: 100%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.gameWrap main {
+    width: 90%;
+    height: 90%;
+    background-color: brown;
+    display: flex;
+    flex-direction: column;
+   
+}
+.gameWrap main header{
+    height: 15%;
+    background-color: yellow; 
+    display: flex;
+    align-items: center;
+}
+.gameWrap main header button{
+    height: 5rem;
+    width: 5rem;
+    max-height: 90%;
+}
+.gameWrap button img{
+    height: 80%;
+}
+.gameWrap main article{
+    height: 100%;
+    background-color: var(--pietDarkGrey);
+}

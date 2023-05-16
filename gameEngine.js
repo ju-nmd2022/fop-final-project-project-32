@@ -26,17 +26,19 @@ function addComb(inComb){
     
 
     // Random color for the Comb
-    let colRand = Math.floor(Math.random()*3) 
-    console.log(colRand)
-    let combCol;
-    if(colRand<1){
-        combCol = "R"
-        console.log("Red is made")
-    }else if (colRand === 1) {
-        combCol = "B"
-    } else {
-         combCol = "Y"
+    function colRand(){
+        let colRand = Math.floor(Math.random()*3) 
+        let combCol;
+        if(colRand<1){
+            combCol = "R"
+        }else if (colRand === 1) {
+            combCol = "B"
+        } else {
+            combCol = "Y"
+        }
+        return combCol
     }
+    
 
 
     // Random spot chosen
@@ -47,27 +49,45 @@ function addComb(inComb){
 
     // for loop here
     while(combCount < inComb){
-
-
-
         let randRow = Math.floor(Math.random()*rowCount)
         let randCol = Math.floor(Math.random()*colCount)
 
         if(grid[randRow][randCol] === ""){
-           grid[randRow][randCol] = combCol 
+           grid[randRow][randCol] = colRand() 
            combCount++
-        }
-        
+        }    
         
     }
-    
 
 
 }
-console.log(grid)
+
+
+function genHtml(inGrid){ 
+    row = inGrid.length
+    col = inGrid[0].length
+    i = 0
+    while(i < row){
+        j = 0
+        var sec = document.createElement("section")
+        sec.classList.add(`sec${i}`)
+        // here it should put the sec into the html
+        while(j < col){
+            par = document.createElement("p")
+            par.classList.add(`par${j}`)
+            // å should find in the htnml section and add a new p
+            å.appendChild(par)
+            j++
+        }
+        i++
+
+    }
+
+
+}
+
 
 genGrid(stockInRow,stockInCol)
 addComb(stockInCombs)
 console.log(grid)
 
-console.log(grid[0].length)
