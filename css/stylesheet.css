@@ -169,4 +169,24 @@ div, article{
 .gameWrap main article{
     height: 100%;
     background-color: var(--pietDarkGrey);
+    display: flex;
+    flex-direction: column;
+
+}
+.gameWrap article section{
+    background-color: beige;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    
+
+}
+.gameWrap article section p{
+    background-color: rgb(106, 65, 12);
+    height: 100%;
+    width: 100%;
+
+    box-sizing: border-box;
+    border: var(--borderThickness) solid var(--pietBlack);
+    
 }

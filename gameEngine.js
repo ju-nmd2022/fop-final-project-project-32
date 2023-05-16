@@ -59,6 +59,7 @@ function addComb(inComb){
         
     }
 
+    genHtml(grid);
 
 }
 
@@ -71,12 +72,17 @@ function genHtml(inGrid){
         j = 0
         var sec = document.createElement("section")
         sec.classList.add(`sec${i}`)
+        gameArea = document.querySelector(".gameWrap main article")
+        gameArea.appendChild(sec)
         // here it should put the sec into the html
         while(j < col){
-            par = document.createElement("p")
+            var par = document.createElement("p")
+            
             par.classList.add(`par${j}`)
-            // å should find in the htnml section and add a new p
-            å.appendChild(par)
+            
+            let gameArea = document.querySelector(`.sec${i}`)
+            console.log(gameArea)
+            gameArea.appendChild(par)
             j++
         }
         i++
