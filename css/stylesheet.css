@@ -26,7 +26,7 @@ Why only 2 letter? To make it possible to see the grid in text form easier
 
 */
 
-.startWrap{
+ .startWrap{
     width: 100%;
     height: 100vh;
     display: grid;
@@ -44,6 +44,27 @@ Why only 2 letter? To make it possible to see the grid in text form easier
     border: none;
 }
 
+/*.startWrap{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 3fr 1fr 3fr 1fr 3fr 1fr 6fr 1fr 3fr 1fr 3fr 1fr;
+    grid-template-rows: 3fr 1fr 9fr 1fr 9fr 1fr 6fr 1fr 6fr 1fr;
+    grid-template-areas: 
+    ".  .  .  LI .  .  .  LI BY BY BY LI "
+    "LI LI LI LI LI LI LI LI LI LI LI LI "
+    ".  LI BR BR BR BR BR LI BY BY BY LI "
+    "LI LI BR BR BR BR BR LI LI LI LI LI "
+    ".  LI LI LI LI LI LI LI LI LI LI LI "
+    ".  LI BB BB BB LI  . LI  .  .  . LI "
+    "LI LI BB BB BB LI LI LI LI LI LI LI "
+    "SY LI BB BB BB LI .  LI BL BL BL LI "
+    "SY LI .  .  .  LI SB LI BL BL BL LI "
+    "LI LI LI LI LI LI LI LI LI LI LI LI "
+    ;
+    border: none;
+}
+*/
 .startOptions{
     grid-area: BR;
     background-color: var(--pietRed);
@@ -100,6 +121,12 @@ div, article{
     grid-area: SR;
     background-color: var(--pietRed);
 }
+
+/*.colorBlock7{
+    grid-area: LI;
+    background-color: var(--pietBlack);
+}
+*/
 
 /* -------------------------------------------- */
 /*                   Game                      */
