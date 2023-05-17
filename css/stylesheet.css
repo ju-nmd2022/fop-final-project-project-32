@@ -190,3 +190,8 @@ div, article{
     border: var(--borderThickness) solid var(--pietBlack);
     
 }
+
+#revealed{ 
+    background-color: blue ;
+
+}

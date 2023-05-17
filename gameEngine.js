@@ -65,24 +65,24 @@ function addComb(inComb){
 
 
 function genHtml(inGrid){ 
-    row = inGrid.length
-    col = inGrid[0].length
-    i = 0
+    let row = inGrid.length
+    let col = inGrid[0].length
+    let i = 0
     while(i < row){
-        j = 0
-        var sec = document.createElement("section")
-        sec.classList.add(`sec${i}`)
-        gameArea = document.querySelector(".gameWrap main article")
+        let j = 0
+        let sec = document.createElement("section")
+        sec.classList.add(`${i}sec`)
+        let gameArea = document.querySelector(".gameWrap main article")
         gameArea.appendChild(sec)
         // here it should put the sec into the html
         while(j < col){
             var par = document.createElement("p")
-            
-            par.classList.add(`par${j}`)
-            
-            let gameArea = document.querySelector(`.sec${i}`)
-            console.log(gameArea)
-            gameArea.appendChild(par)
+            par.classList.add(`${j}par`)
+            par.addEventListener("click",()=>{
+                let cordNum = `${j} ${i}`
+            })
+            let gameAreaSec = document.querySelector(`.sec${i}`)
+            gameAreaSec.appendChild(par)
             j++
         }
         i++
@@ -93,6 +93,70 @@ function genHtml(inGrid){
 }
 
 
+function genHtml(inGrid) {
+    let row = inGrid.length;
+    let col = inGrid[0].length;
+    let i = 0;
+  
+    while (i < row) {
+      let j = 0;
+      let sec = document.createElement("section");
+      let secNum = `sec${i}`;
+      sec.classList.add(secNum);
+      let gameArea = document.querySelector(".gameWrap main article");
+      gameArea.appendChild(sec);
+  
+      while (j < col) {
+        let par = document.createElement("p");
+        let parClass = `par${j}`;
+        par.classList.add(parClass);
+        
+        par.addEventListener("click", function() {
+          let parNum = par.className;
+          clickSquare(parNum, secNum)
+        });
+        
+        let gameAreaSec = document.querySelector(`.sec${i}`);
+        gameAreaSec.appendChild(par);
+        j++;
+      }
+      
+      i++;
+    }
+  }
+
+
+  function clickSquare(inP, inS){
+
+    let clickedSquare = document.querySelector(`.${inS} .${inP}`)
+
+    
+    let numP = parseInt(inP.slice(3,4))
+    let numS = parseInt(inS.slice(3,4))
+    console.log(numP )
+
+
+    
+    let test = grid[numP][numS]
+    console.log(test)
+    console.log(grid)
+
+
+    // if(grid[numS][numP] === ""){
+    //     combClick()
+    // }else{
+
+    // }
+
+    clickedSquare.id = "revealed"
+
+
+  }
+
+
+  function combClick(){
+    alert("lost")
+  }
 genGrid(stockInRow,stockInCol)
 addComb(stockInCombs)
 console.log(grid)
