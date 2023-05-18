@@ -157,7 +157,10 @@ div, article{
     background-color: yellow; 
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 0rem 2rem;
 }
+
 .gameWrap main header button{
     height: 5rem;
     width: 5rem;
@@ -192,6 +195,16 @@ div, article{
 }
 
 #revealed{ 
-    background-color: blue ;
+    background-color: white ;
 
 }
+#combRed{
+    background-color:var(--pietRed);
+}
+#combBlue{
+    background-color:var(--pietBlue);
+}
+#combYellow{
+    background-color: var(--pietYellow);
+}
+

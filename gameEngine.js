@@ -108,9 +108,9 @@ function genHtml(inGrid) {
   
       while (j < col) {
         let par = document.createElement("p");
-        let parClass = `par${j}`;
+        let parClass = `par${j}`; 
         par.classList.add(parClass);
-        
+            
         par.addEventListener("click", function() {
           let parNum = par.className;
           clickSquare(parNum, secNum)
@@ -130,34 +130,85 @@ function genHtml(inGrid) {
 
     let clickedSquare = document.querySelector(`.${inS} .${inP}`)
 
-    
+    // Needs to be remade, works only up to 9
     let numP = parseInt(inP.slice(3,4))
     let numS = parseInt(inS.slice(3,4))
-    console.log(numP )
 
 
     
-    let test = grid[numP][numS]
-    console.log(test)
-    console.log(grid)
 
 
-    // if(grid[numS][numP] === ""){
-    //     combClick()
-    // }else{
 
-    // }
+    if(grid[numS][numP] != ""){
+        if(grid[numS][numP] === "R"){
+            clickedSquare.id = "combRed"   
+        }else if (grid[numS][numP] === "Y") {
+            clickedSquare.id = "combYellow"
+        } else {
+            clickedSquare.id = "combBlue"
+        }
+        combClick()
+    }else{
+        checkSquaresAround(numS,numP);
+       clickedSquare.id = "revealed" 
+        
 
-    clickedSquare.id = "revealed"
+
+
+    }
+
+    
 
 
   }
 
 
   function combClick(){
-    alert("lost")
-  }
+    // alert("lost")
+}
+function checkSquaresAround(inX,inY){
+    let combCountR = 0
+    let combCountY = 0
+    let combCountB = 0
+    
+    
+    
+    // Help from chatGPT to modifie the code so that undefined values would not be a problem. Multipe version had to be made as it didn't always work perfectly. (If want to oveer look Felix have them stored)
+    if (
+        
+          (grid[inX-1] && grid[inX-1][inY+1] !== undefined && grid[inX-1][inY+1] !== "") ||
+          (grid[inX][inY+1] !== undefined && grid[inX][inY+1] !== "") ||
+          (grid[inX+1] && grid[inX+1][inY+1] !== undefined && grid[inX+1][inY+1] !== "") ||
+          (grid[inX-1] && grid[inX-1][inY] !== undefined && grid[inX-1][inY] !== "") ||
+          (grid[inX+1] && grid[inX+1][inY] !== undefined && grid[inX+1][inY] !== "") ||
+          (grid[inX-1] && grid[inX-1][inY-1] !== undefined && grid[inX-1][inY-1] !== "") ||
+          (grid[inX][inY-1] !== undefined && grid[inX][inY-1] !== "") ||
+          (grid[inX+1] && grid[inX+1][inY-1] !== undefined && grid[inX+1][inY-1] !== "")
+
+      ) {
+        console.log("Combs around me");
+      } else {
+        console.log("No comb around me");
+      }
+// The if goes thorugh and check both if the coordinate is defined and if so if thier aren't nothing(as a bomb would have something inside). This means multipe things needs to be fulid.  
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
 genGrid(stockInRow,stockInCol)
 addComb(stockInCombs)
 console.log(grid)
 
+console.log(grid[-1] === undefined)
