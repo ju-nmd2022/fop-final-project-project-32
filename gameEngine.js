@@ -1,6 +1,6 @@
 const stockInRow = 6
 const stockInCol = 8
-const stockInCombs = 6
+const stockInCombs = 3
 let grid = [];
 
 function genGrid(inRow,inCol){
@@ -150,8 +150,7 @@ function genHtml(inGrid) {
         combClick()
     }else{
         checkSquaresAround(numS,numP);
-       clickedSquare.id = "revealed" 
-        
+    //    clickedSquare.id = "revealed" 
 
 
 
@@ -171,50 +170,112 @@ function checkSquaresAround(inX,inY){
     let combCountY = 0
     let combCountB = 0
     
-    
+
+    for(let i= -1; i<2; i++){
+
+        let tempY = i
+
+        for(let z= -1; z<2; z++){
+            let tempX = z
+            if(inY+tempY> -2 && inY+tempY<grid.length){
+                
+                let lookCell = grid[inY+tempY][inX+tempX]
+                if(lookCell !== ""){
+                    if(lookCell !== undefined){
+                        if(lookCell === "Y"){
+                            combCountY++
+                        }if (lookCell === "R") {
+                            combCountR++
+                        } if(lookCell === "B"){
+                            combCountB++
+                        }else {
+                            console.log(lookCell + " Ehmmm this is not a comb")
+                        } 
+                    }else{
+                       console.log("I'm prbly undefied " + lookCell) 
+                    }
+                    
+                    
+                }
+                    
+                
+                
+            }
+            let selCell = document.querySelector(`.sec${inX} .par${inY}`)
+            if(combCountB === 0 &&combCountR === 0 &&combCountY === 0){
+                selCell.id = "revealed"
+                combCountB = 0
+                combCountR = 0
+                combCountY = 0
+                // if(inX+1<grid[1].length&&inY<grid.length){
+                //   checkSquaresAround(inX+1,inY+1)  
+                // }
+                
+
+
+            }else{
+                selCell.innerHTML = `R${combCountR} B${combCountB} Y${combCountY}`
+                selCell.id = "revealed" 
+            }
+            
+
+            
+        
+        }
+    }
     
     // Help from chatGPT to modifie the code so that undefined values would not be a problem. Multipe version had to be made as it didn't always work perfectly. (If want to oveer look Felix have them stored)
     
     
     
-    if (
+//     if (
         
-          (grid[inX-1] && grid[inX-1][inY+1] !== undefined && grid[inX-1][inY+1] !== "") ||
-          (grid[inX][inY+1] !== undefined && grid[inX][inY+1] !== "") ||
-          (grid[inX+1] && grid[inX+1][inY+1] !== undefined && grid[inX+1][inY+1] !== "") ||
-          (grid[inX-1] && grid[inX-1][inY] !== undefined && grid[inX-1][inY] !== "") ||
-          (grid[inX+1] && grid[inX+1][inY] !== undefined && grid[inX+1][inY] !== "") ||
-          (grid[inX-1] && grid[inX-1][inY-1] !== undefined && grid[inX-1][inY-1] !== "") ||
-          (grid[inX][inY-1] !== undefined && grid[inX][inY-1] !== "") ||
-          (grid[inX+1] && grid[inX+1][inY-1] !== undefined && grid[inX+1][inY-1] !== "")
+//           (grid[inX-1] && grid[inX-1][inY+1] !== undefined && grid[inX-1][inY+1] !== "") ||
+//           (grid[inX][inY+1] !== undefined && grid[inX][inY+1] !== "") ||
+//           (grid[inX+1] && grid[inX+1][inY+1] !== undefined && grid[inX+1][inY+1] !== "") ||
+//           (grid[inX-1] && grid[inX-1][inY] !== undefined && grid[inX-1][inY] !== "") ||
+//           (grid[inX+1] && grid[inX+1][inY] !== undefined && grid[inX+1][inY] !== "") ||
+//           (grid[inX-1] && grid[inX-1][inY-1] !== undefined && grid[inX-1][inY-1] !== "") ||
+//           (grid[inX][inY-1] !== undefined && grid[inX][inY-1] !== "") ||
+//           (grid[inX+1] && grid[inX+1][inY-1] !== undefined && grid[inX+1][inY-1] !== "")
 
-      ) {
-        console.log("Combs around me");
-      } else {
-        console.log("No comb around me");
+//       ) {
+//         console.log("Combs around me");
 
-        for (let x = inX - 1; x <= inX + 1; x++) {
-            for (let y = inY + 1; y >= inY - 1; y--) {
-              let showClear = document.querySelector(`.sec${x} .par${y}`);
+
+
+
+
+
+
+
+//         document.querySelector(`.sec${inX} .par${inY}`).innerHTML = "Q"
+
+//       } else {
+//         console.log("No comb around me");
+
+//         for (let x = inX - 1; x <= inX + 1; x++) {
+//             for (let y = inY + 1; y >= inY - 1; y--) {
+//               let showClear = document.querySelector(`.sec${x} .par${y}`);
               
-              if (showClear !== null) {
+//               if (showClear !== null) {
                 
-                console.log(`${x} ${y}`)
+//                 console.log(`${x} ${y}`)
                 
 
-                showClear.id = "revealed";
+//                 showClear.id = "revealed";
 
-                // if(x !== null && y !== null){
-                //     checkSquaresAround(x,y)
-                // }
+//                 // if(x !== null && y !== null){
+//                 //     checkSquaresAround(x,y)
+//                 // }
                 
-              }
-            }
-          }
+//               }
+//             }
+//           }
         
         
-      }
-// The if goes thorugh and check both if the coordinate is defined and if so if thier aren't nothing(as a bomb would have something inside). This means multipe things needs to be fulid.  
+//       }
+// // The if goes thorugh and check both if the coordinate is defined and if so if thier aren't nothing(as a bomb would have something inside). This means multipe things needs to be fulid.  
 
 
 
@@ -235,4 +296,3 @@ genGrid(stockInRow,stockInCol)
 addComb(stockInCombs)
 console.log(grid)
 
-console.log(grid[-1] === undefined)
