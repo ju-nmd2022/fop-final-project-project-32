@@ -1,6 +1,6 @@
 const stockInRow = 6
 const stockInCol = 8
-const stockInCombs = 3
+const stockInCombs = 6
 let grid = [];
 
 function genGrid(inRow,inCol){
@@ -174,6 +174,9 @@ function checkSquaresAround(inX,inY){
     
     
     // Help from chatGPT to modifie the code so that undefined values would not be a problem. Multipe version had to be made as it didn't always work perfectly. (If want to oveer look Felix have them stored)
+    
+    
+    
     if (
         
           (grid[inX-1] && grid[inX-1][inY+1] !== undefined && grid[inX-1][inY+1] !== "") ||
@@ -189,6 +192,27 @@ function checkSquaresAround(inX,inY){
         console.log("Combs around me");
       } else {
         console.log("No comb around me");
+
+        for (let x = inX - 1; x <= inX + 1; x++) {
+            for (let y = inY + 1; y >= inY - 1; y--) {
+              let showClear = document.querySelector(`.sec${x} .par${y}`);
+              
+              if (showClear !== null) {
+                
+                console.log(`${x} ${y}`)
+                
+
+                showClear.id = "revealed";
+
+                // if(x !== null && y !== null){
+                //     checkSquaresAround(x,y)
+                // }
+                
+              }
+            }
+          }
+        
+        
       }
 // The if goes thorugh and check both if the coordinate is defined and if so if thier aren't nothing(as a bomb would have something inside). This means multipe things needs to be fulid.  
 
