@@ -1,6 +1,6 @@
 const stockInRow = 6
 const stockInCol = 8
-const stockInCombs = 3
+const stockInCombs = 6
 let grid = [];
 
 function genGrid(inRow,inCol){
@@ -209,7 +209,7 @@ function checkSquaresAround(inX,inY){
                 selCell.id = "revealed"
                 
                 // if(inX+1<grid[1].length&&inY<grid.length){
-                //   checkSquaresAround(inX+1,inY+1)  
+                //   checkSquaresAround(inX,inY+1)  
                 // }
                 
 
@@ -219,12 +219,7 @@ function checkSquaresAround(inX,inY){
                 selCell.id = "revealed" 
                 
             }
-            combCountB = 0
-            combCountR = 0
-            combCountY = 0
 
-            
-        
         }
     }
     
