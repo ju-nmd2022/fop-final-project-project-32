@@ -149,7 +149,7 @@ function genHtml(inGrid) {
         }
         combClick()
     }else{
-        checkSquaresAround(numS,numP);
+        checkSquaresAround(numP,numS);
     //    clickedSquare.id = "revealed" 
 
 
@@ -177,22 +177,25 @@ function checkSquaresAround(inX,inY){
 
         for(let z= -1; z<2; z++){
             let tempX = z
-            if(inY+tempY> -2 && inY+tempY<grid.length){
+            if(inY+tempY> -1 && inY+tempY<grid.length){
                 
                 let lookCell = grid[inY+tempY][inX+tempX]
                 if(lookCell !== ""){
                     if(lookCell !== undefined){
                         if(lookCell === "Y"){
                             combCountY++
-                        }if (lookCell === "R") {
+                        }else if (lookCell === "R") {
                             combCountR++
-                        } if(lookCell === "B"){
+                        }else if(lookCell === "B"){
                             combCountB++
                         }else {
                             console.log(lookCell + " Ehmmm this is not a comb")
+                            console.log(grid)
+                            console.log(inY+tempY +' Y'+ inX+tempX)
                         } 
                     }else{
                        console.log("I'm prbly undefied " + lookCell) 
+                       
                     }
                     
                     
@@ -201,12 +204,10 @@ function checkSquaresAround(inX,inY){
                 
                 
             }
-            let selCell = document.querySelector(`.sec${inX} .par${inY}`)
-            if(combCountB === 0 &&combCountR === 0 &&combCountY === 0){
+            let selCell = document.querySelector(`.sec${inY} .par${inX}`)
+            if(combCountB === 0 && combCountR === 0 && combCountY === 0){
                 selCell.id = "revealed"
-                combCountB = 0
-                combCountR = 0
-                combCountY = 0
+                
                 // if(inX+1<grid[1].length&&inY<grid.length){
                 //   checkSquaresAround(inX+1,inY+1)  
                 // }
@@ -216,8 +217,11 @@ function checkSquaresAround(inX,inY){
             }else{
                 selCell.innerHTML = `R${combCountR} B${combCountB} Y${combCountY}`
                 selCell.id = "revealed" 
+                
             }
-            
+            combCountB = 0
+            combCountR = 0
+            combCountY = 0
 
             
         

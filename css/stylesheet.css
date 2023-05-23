@@ -185,7 +185,7 @@ div, article{
 
 }
 .gameWrap article section p{
-    background-color: rgb(106, 65, 12);
+    background-color: var(--pietDarkGrey);
     height: 100%;
     width: 100%;
 
