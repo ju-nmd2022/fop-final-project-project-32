@@ -119,16 +119,11 @@ function genHtml(inGrid) {
           clickSquare(parNum, secNum)
         });
 
-        par.addEventListener("keydown", function(event) {
-            if (event.keyCode === 32 || event.key === " ") {
-              let parNum = par.className;
-              flag(parNum, secNum);
-            }
-          });
-        // par.addEventListener("space", function() {
-        //     let parNum = par.className;
-        //     flag(parNum, secNum)
-        // });
+        par.addEventListener("space", function() {
+            let parNum = par.className;
+            flag(parNum, secNum)
+        });
+       
         
         let gameAreaSec = document.querySelector(`.sec${i}`);
         gameAreaSec.appendChild(par);
@@ -240,33 +235,29 @@ function checkSquaresAround(inX,inY){
    
     
 }
-function flag(inX,inY){
-let flagColorMode = 0;
-
-document.addEventListener("keydown", function(event) {
-  if (event.keyCode === 32 || event.key === " ") {
-    if (flagColorMode === 0) {
-        flag.id = "flagWhite"
-    } else if (flagColorMode === 1) {
-        flag.id = "flagRed"
-    } else if (flagColorMode === 2) {
-        flag.id = "flagYellow"
-    } else {
-        flag.id = "flagBlue"
-    }
-
-    flagColorMode = (flagColorMode + 1) % 4;
+function flag(inS, inP) {
+    let flag = document.querySelector(`.${inS}.${inP}`);
+  
+    flag.addEventListener("mouseover", function(event) {
+      if (event.code === "Space" || event.key === " ") {
+        if (flagColorMode === 0) {
+          flag.id = "flagWhite";
+          console.log("White");
+        } else if (flagColorMode === 1) {
+          flag.id = "flagRed";
+          console.log("Red");
+        } else if (flagColorMode === 2) {
+          flag.id = "flagYellow";
+          console.log("Yellow");
+        } else {
+          flag.id = "flagBlue";
+          console.log("Blue");
+        }
+  
+        flagColorMode = (flagColorMode + 1) % 3;
+      }
+    });
   }
-});
-}
-// function flag(inX,inY){
-//     let flag = document.querySelector(`.${inS} .${inP}`)
-//     let numP = parseInt(inP.slice(3,4))
-//     let numS = parseInt(inS.slice(3,4))
-
-
-
-// }
 
 
    

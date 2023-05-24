@@ -208,6 +208,19 @@ div, article{
     background-color: var(--pietYellow);
 }
 
-#flagwhite{
-    background-color: ;
+
+
+#flagWhite{
+    background-color: white;
+}
+#flagYellow{
+    background-color:var(--pietYellow);
+}
+
+#flagBlue{
+    background-color:var(--pietBlue);
+}
+
+#flagRed{
+    background-color: var(--pietRed);
 }
