@@ -9,6 +9,7 @@
     --pietRed: rgb(249, 17, 17);
     --pietBlack:rgb(0,0,0);
     --pietDarkGrey:rgb(105, 105, 105);
+    --pietLightGrey:rgb(225, 225, 225);
     --borderThickness: 0.3rem ;
 }
 .Look{
@@ -134,7 +135,6 @@ div, article{
 
 
 .gameWrap{
-    background-color: salmon;
     height: 100vh;
     width: 100%;
     border: none;
@@ -154,7 +154,7 @@ div, article{
 }
 .gameWrap main header{
     height: 15%;
-    background-color: yellow; 
+    background-color: var(--pietLightGrey); 
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -4,6 +4,7 @@ const stockInCombs = 5
 let grid = [];
 // stockInRow*stockinCol - stockInCombs will tell us when all non leathel squares are reveled
 let revealedNum = 0
+let firstClick = false
 
 function genGrid(inRow,inCol){
     
@@ -23,10 +24,25 @@ function genGrid(inRow,inCol){
     return grid
     
 }
+
 function resetCanvas(){
-   let allCell = document.querySelectorAll('p')
-    
+
+    let allCell = document.querySelectorAll('p')
+    allCell.forEach(function(cell) {
+        cell.id = ""
+        cell.innerHTML = ""
+    })
+    let gameArea = document.querySelector(".gameWrap main article")
+    gameArea.innerHTML = ""
+    genGrid(stockInRow,stockInCol)
+    addComb(stockInCombs)
+    firstClick = false
+
 }
+let brushButton = document.querySelector("#brush")
+brushButton.addEventListener("click",()=>{
+    resetCanvas()
+})
 // Color bomb put togheter is Comb.
 function addComb(inComb){
     
@@ -161,7 +177,7 @@ function genHtml(inGrid) {
   }
 
 function combClick(){
-    // alert("lost")
+    resetCanvas()
 }
 function checkSquaresAround(inX,inY){
     let combCountR = 0
@@ -264,9 +280,7 @@ function flag(inS, inP) {
 function won(){
     alert("You won, jippy")
 }
-function resetCanvas(){
-    document.querySelectorAll("p")
-}
+
 
 
 genGrid(stockInRow,stockInCol)
