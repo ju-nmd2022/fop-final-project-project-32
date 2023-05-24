@@ -6,6 +6,8 @@ let grid = [];
 let revealedNum = 0
 let firstClick = false
 
+let gameArea = document.querySelector(".gameWrap main article");
+
 function genGrid(inRow,inCol){
     
     let bombCount = 0
@@ -27,12 +29,11 @@ function genGrid(inRow,inCol){
 
 function resetCanvas(){
 
-    let allCell = document.querySelectorAll('p')
+    let allCell = document.querySelectorAll(".gameWrap main article p")
     allCell.forEach(function(cell) {
         cell.id = ""
         cell.innerHTML = ""
     })
-    let gameArea = document.querySelector(".gameWrap main article")
     gameArea.innerHTML = ""
     genGrid(stockInRow,stockInCol)
     addComb(stockInCombs)
@@ -94,7 +95,6 @@ function genHtml(inGrid){
         let j = 0
         let sec = document.createElement("section")
         sec.classList.add(`${i}sec`)
-        let gameArea = document.querySelector(".gameWrap main article")
         gameArea.appendChild(sec)
         // here it should put the sec into the html
         while(j < col){
@@ -122,7 +122,6 @@ function genHtml(inGrid) {
       let sec = document.createElement("section");
       let secNum = `sec${i}`;
       sec.classList.add(secNum);
-      let gameArea = document.querySelector(".gameWrap main article");
       gameArea.appendChild(sec);
   
       while (j < col) {
@@ -177,7 +176,18 @@ function genHtml(inGrid) {
   }
 
 function combClick(){
-    resetCanvas()
+    let i = 0
+    function pause(){
+        if(i>0){
+            resetCanvas() 
+            gameArea.removeEventListener("click",pause)
+            brushImg.src = "img/brushPiet.svg"
+        }
+        i++
+    }
+    gameArea.addEventListener("click",pause)
+    let brushImg = document.querySelector("#brush img")
+    brushImg.src = "img/brushPietBroken.svg"
 }
 function checkSquaresAround(inX,inY){
     let combCountR = 0
@@ -188,10 +198,9 @@ function checkSquaresAround(inX,inY){
 
     if(selCell.id !== "revealed"){
         revealedNum++
-        console.log(revealedNum)
         
     }else{
-        console.log('I ran else')
+        // console.log('I ran else')
     }
     
     if(revealedNum + 1>stockInCol*stockInRow-stockInCombs){
@@ -229,12 +238,17 @@ function checkSquaresAround(inX,inY){
                 }
                 
                 
-                // if(inX+1<grid[1].length && inY<grid.length){
-                //     console.log(inX)
-                //   checkSquaresAround(inX,inY-1)  
-                // }
-                
-                
+                // Here I want it to rerun the code 
+                // Crashes and overwrites code if I have 
+                // checkSquaresAround(inX-1,inY)
+                // any inX and inY works weridly
+                // The idea would some sytem that puts in all the squares around
+
+                // Testing with chat gpt it talked about remake the data handling. 
+                // Unsure how it wanted it format as it just tried to queryselect a new type of data. 
+
+                // Prb need to see the eventlistner feeds in data.
+            
                 
 
             }else{
@@ -251,9 +265,14 @@ function checkSquaresAround(inX,inY){
    
     
 }
+
+
+
 function flag(inS, inP) {
-    let flag = document.querySelector(`.${inS}.${inP}`);
-  
+    let flag = document.querySelector(`.${inS} .${inP}`);
+    
+    console
+
     flag.addEventListener("mouseover", function(event) {
       if (event.code === "Space" || event.key === " ") {
         if (flagColorMode === 0) {
@@ -273,15 +292,30 @@ function flag(inS, inP) {
         flagColorMode = (flagColorMode + 1) % 3;
       }
     });
-  }
+}
 
+// With time contrastrians we could do on won state that the other are just reaveld as the flag color
+function revealAllCombs(){
+
+}
 
    
 function won(){
-    alert("You won, jippy")
+    let allCell = document.querySelectorAll(".gameWrap main article p")
+    allCell.forEach(function(cell) {
+        cell.innerHTML = ""
+    })
+    let i = 0
+    function pause(){
+        if(i>0){
+            resetCanvas() 
+            gameArea.removeEventListener("click",pause)
+        }
+        i++
+    }
+    gameArea.addEventListener("click",pause)
+    
 }
-
-
 
 genGrid(stockInRow,stockInCol)
 addComb(stockInCombs)
