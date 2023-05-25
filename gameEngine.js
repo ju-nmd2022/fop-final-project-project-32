@@ -308,23 +308,6 @@ function checkSquaresAround(inX,inY){
                 }
                 
                 
-                // Here I want it to rerun the code 
-                // Crashes and overwrites code if I have 
-                // checkSquaresAround(inX-1,inY)
-                // any inX and inY works weridly
-                // The idea would some sytem that puts in all the squares around
-                // checkSquaresAround(inX-1,inY)
-                // Testing with chat gpt it talked about remake the data handling. 
-                // Unsure how it wanted it format as it just tried to queryselect a new type of data. 
-                // let testCell = grid[inY+1][inX]
-                // let htmlCellTest = document.querySelector(`.par${inY} .sec${inX}`)
-                // console.log(htmlCellTest)
-                // console.log(testCell)
-                // if(htmlCellTest !== undefined){
-                // }
-                console.log()
-
-
 
                 // The problem now is that is jumping back and forther between value. 
                 // I could made an new array with checked cord and if checked don't run clicksquare. I could do filter or find in array. 
@@ -339,9 +322,13 @@ function checkSquaresAround(inX,inY){
                             
                             if(inY+tempY>0 && inY<grid.length-1){
                             if(inX+tempX>0 && inX< grid[0].length-1){
-                                clickSquare(`par${inY+tempY}` ,`sec${inX+tempX}`,true)
- 
+                                
+                                    if(false === false){
+                                        clickSquare(`par${inY+tempY}` ,`sec${inX+tempX}`,true)
+    
+                                    }  
                                 }
+                                
                             }
                                 
                             
