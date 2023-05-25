@@ -1,6 +1,6 @@
-const stockInRow = 6
-const stockInCol = 8
-const stockInCombs = 5
+const stockInRow = 5
+const stockInCol = 5
+const stockInCombs = 1
 let grid = [];
 // stockInRow*stockinCol - stockInCombs will tell us when all non leathel squares are reveled
 let revealedNum = 0
@@ -28,7 +28,7 @@ function genGrid(inRow,inCol){
 }
 
 function resetCanvas(){
-
+resettTimer()
     let allCell = document.querySelectorAll(".gameWrap main article p")
     allCell.forEach(function(cell) {
         cell.id = ""
@@ -131,7 +131,7 @@ function genHtml(inGrid) {
             
         par.addEventListener("click", function() {
           let parNum = par.className;
-          clickSquare(parNum, secNum)
+          clickSquare(parNum, secNum,false)
         });
         
         par.addEventListener("contextmenu", function() {
@@ -155,69 +155,52 @@ function genHtml(inGrid) {
 
     
   }
-
-  let stopWatchId; 
-  let seconds = 0; 
   
-  function startGame() {
-    stopWatchId = setTimeout(updateTime, 1000);
+  let  timerVariable = setInterval(countUpTimer, 1000);
+  let totalSeconds = 0
+  
+  function resettTimer(){
+    totalSeconds = 0;
+  } 
+
+  function startTimer(){
+  timerVariable = setInterval(countUpTimer, 1000);
   }
-  
-  function updateTime() {
-    seconds++;
-  
-    
-    document.querySelector(".gameWrap main header aisde").innerHTML = seconds;
-  
-    
-    timerId = setTimeout(updateTime, 1000);
+
+  function stopTimer(){
+    clearInterval(timerVariable)
   }
-  
-  function gameWon() {
-    clearTimeout(timerId);
-    stId = null;
+
+  function countUpTimer() {
+    ++totalSeconds;
+    let minute = Math.floor(totalSeconds / 60);
+   let seconds = totalSeconds - (minute * 60);
+   let timer = document.querySelector(".gameWrap main header aside h2")
+   timer.innerHTML = minute + ":" + seconds
+
   }
-//   let stopWatchId = 0;
-//   let seconds = 0;
-// function startGame() {
-//  stopWatchId = setTimeout(updateTime, 1000);
-// //   let startTime = Date.now();
 
- 
-// //   stopWatchId = setInterval(function() {
-// //     let currentTime = Date.now();
-// //     let elapsedTime = currentTime - startTime;
-// //     let seconds = Math.floor(elapsedTime / 1000);
 
-    
-//     document.querySelector(".gameWrap main header aisde").innerHTML = seconds;
-// //   });
-// }
-
-// function gameWon() {
-//   clearInterval(stopWatchId);
-//   stopWatchId = null;
-// }
-// function updateTime() {
-//     seconds++;}
-
-  function clickSquare(inP, inS){
-
+  function clickSquare(inP, inS, autoClick){
     let clickedSquare = document.querySelector(`.${inS} .${inP}`)
 
     // Needs to be remade, works only up to 9
-    let numP = parseInt(inP.slice(3,4))
-    let numS = parseInt(inS.slice(3,4))
+    let numP = parseInt(inP.substring(3))
+    let numS = parseInt(inS.substring(3))
 
     if(grid[numS][numP] != ""){
-        if(grid[numS][numP] === "R"){
-            clickedSquare.id = "combRed"   
-        }else if (grid[numS][numP] === "Y") {
-            clickedSquare.id = "combYellow"
-        } else {
-            clickedSquare.id = "combBlue"
+        if(autoClick === false){
+            if(grid[numS][numP] === "R"){
+                clickedSquare.id = "combRed"   
+            }else if (grid[numS][numP] === "Y") {
+                clickedSquare.id = "combYellow"
+            } else {
+                clickedSquare.id = "combBlue"
         }
-        combClick()
+            combClick()
+        }
+        
+        
     }else{
         checkSquaresAround(numP,numS);
     //    clickedSquare.id = "revealed" 
@@ -229,17 +212,19 @@ function genHtml(inGrid) {
 function combClick(){
     let i = 0
     function pause(){
+        clearInterval(timerVariable)
         if(i>0){
             resetCanvas() 
             gameArea.removeEventListener("click",pause)
             brushImg.src = "img/brushPiet.svg"
+             
         }
         i++
     }
     gameArea.addEventListener("click",pause)
     let brushImg = document.querySelector("#brush img")
     brushImg.src = "img/brushPietBroken.svg"
-
+    
 }
 function checkSquaresAround(inX,inY){
     let combCountR = 0
@@ -298,6 +283,43 @@ function checkSquaresAround(inX,inY){
                 // checkSquaresAround(inX-1,inY)
                 // Testing with chat gpt it talked about remake the data handling. 
                 // Unsure how it wanted it format as it just tried to queryselect a new type of data. 
+                // let testCell = grid[inY+1][inX]
+                // let htmlCellTest = document.querySelector(`.par${inY} .sec${inX}`)
+                // console.log(htmlCellTest)
+                // console.log(testCell)
+                // if(htmlCellTest !== undefined){
+                // }
+                console.log()
+
+
+
+                // The problem now is that is jumping back and forther between value. 
+                // I could made an new array with checked cord and if checked don't run clicksquare. I could do filter or find in array. 
+
+                for(let i= -1; i<2; i++){
+
+                    let tempY = i
+            
+                    for(let z= -1; z<2; z++){
+                        let tempX = z
+                        if(inY+tempY> -1 && inY+tempY<grid.length){
+                            
+                            if(inY+tempY>0 && inY<grid.length-1){
+                            if(inX+tempX>0 && inX< grid[0].length-1){
+                                clickSquare(`par${inY+tempY}` ,`sec${inX+tempX}`,true)
+ 
+                                }
+                            }
+                                
+                            
+                            
+                        }
+                    }
+                }
+
+
+                
+                
 
                 // Prb need to see the eventlistner feeds in data.
             
@@ -319,16 +341,35 @@ function checkSquaresAround(inX,inY){
 }
 
 
-let flagColorMode = 0
+
 function flag(inS, inP) {
+    
     let cell = document.querySelector(`.${inS} .${inP}`);
     let combMark = document.createElement("div")
+    let flagColorMode = 0
+    console.log(cell)
+    if(cell.innerHTML !== ""){
+        let typeComb = cell.querySelector("div")
+        console.log(typeComb)
+        if(typeComb !== null){
+           if(typeComb.id === "flagRed"){
+                flagColorMode = 0
+            }else if(typeComb.id === "flagYellow"){
+                flagColorMode = 1
+            }
+            if(typeComb.id === "flagBlue"){
+                flagColorMode = 2
+            }
+            flagColorMode++
+        }
+        
+        
+        
+    }
+    
     if(flag.id !== "revealed"){
         flagColorMode++
-        
         if (flagColorMode === 1) {
-            
-
             combMark.id = "flagRed";
         } else if (flagColorMode === 2) {
           combMark.id = "flagYellow";
@@ -341,9 +382,12 @@ function flag(inS, inP) {
         if(cell.innerHTML){
             cell.innerHTML = ""
         }
-        cell.append(combMark)
-
-        console.log(flagColorMode)
+        if(flagColorMode === 0){
+            cell.innerHTML = ""
+        }else{
+          cell.append(combMark)  
+        }
+        
     }
         
         
@@ -359,19 +403,24 @@ function revealAllCombs(){
 
    
 function won(){
+    clearInterval(timerVariable)
     let allCell = document.querySelectorAll(".gameWrap main article p")
     allCell.forEach(function(cell) {
         cell.innerHTML = ""
     })
+    // I think this runs 2 many times
     let i = 0
     function pause(){
         if(i>0){
             resetCanvas() 
             gameArea.removeEventListener("click",pause)
-        }
-        i++
+        }else(
+          i++  
+        )
+        
     }
     gameArea.addEventListener("click",pause)
+    
     
 }
 
