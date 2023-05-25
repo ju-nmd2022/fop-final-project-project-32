@@ -214,3 +214,17 @@ div, article{
 #flagRed{
     background-color: var(--pietRed);
 }
+
+/* -------------------------------------------- */
+/*                   variables                 */
+/* ------------------------------------------ */
+.variableWrap{
+    border: none;
+}
+#rowVariable{
+    display: flex;
+}
+
+#columnVariable{
+    display: flex;
+}

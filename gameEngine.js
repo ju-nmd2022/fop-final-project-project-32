@@ -428,5 +428,3 @@ genGrid(stockInRow,stockInCol)
 addComb(stockInCombs)
 
 
-
-
