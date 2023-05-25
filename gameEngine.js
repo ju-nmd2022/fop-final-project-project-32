@@ -1,7 +1,39 @@
-const stockInRow = 5
-const stockInCol = 5
-const stockInCombs = 1
+
+let stockInRow = 5;
+let stockInCol = 5;
+let stockInCombs = 1;
 let grid = [];
+
+function applySettings() {
+  const rowsInput = document.querySelector('#rows');
+  const columnsInput = document.querySelector('#columns');
+  const combsInput = document.querySelector('#combs');
+
+  const rows = parseInt(rowsInput.value);
+  const columns = parseInt(columnsInput.value);
+  const combs = parseInt(combsInput.value);
+  
+  stockInRow = rows;
+  stockInCol = columns;
+  stockInCombs = combs;
+}
+
+// let stockInRow = 5
+// let stockInCol = 5
+// let stockInCombs = 1
+// let grid = [];
+// function applySettings() {
+//     const rowsInput = document.getElementById('rows');
+//     const columnsInput = document.getElementById('columns');
+//     const combsInput = document.getElementById('combs');
+  
+//     const rows = parseInt(rowsInput.value);
+//     const columns = parseInt(columnsInput.value);
+//     const combs = parseInt(combsInput.value);
+//     stockInRow = rows;
+//     stockInCol = columns;
+//     stockInCombs = combs;
+//   }
 // stockInRow*stockinCol - stockInCombs will tell us when all non leathel squares are reveled
 let revealedNum = 0
 let firstClick = false
@@ -226,6 +258,7 @@ function combClick(){
     brushImg.src = "img/brushPietBroken.svg"
     
 }
+let checkedCellsArr = []
 function checkSquaresAround(inX,inY){
     let combCountR = 0
     let combCountY = 0

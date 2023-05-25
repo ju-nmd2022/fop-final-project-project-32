@@ -55,7 +55,7 @@ Why only 2 letter? To make it possible to see the grid in text form easier
     gap: 2rem;
 }
 .startOptions button{
-    border: 0.3rem solid ;
+    border: var(--borderThickness) solid ;
     padding: 1rem;
     width: 15rem;
 }
@@ -218,13 +218,66 @@ div, article{
 /* -------------------------------------------- */
 /*                   variables                 */
 /* ------------------------------------------ */
+
 .variableWrap{
     border: none;
+    height: 100vh;
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 5fr;
+    /* he stands for header, ma stands for main and as stands for aside */
+    grid-template-areas: 
+    "he he"
+    "ma as"
+    ;
 }
-#rowVariable{
+.variableWrap header{
+    grid-area: he;
     display: flex;
+    align-items: center;
 }
-
-#columnVariable{
+.variableWrap header a{
+    width: 100%;
+    height: 10rem;
+    margin-left:5% ;
     display: flex;
+    align-items: center
+    
+}
+.variableWrap header a img{
+    height: 70%;
+}
+.variableWrap main{
+    grid-area: ma;
+    padding: 5%;
+    border: var(--pietBlack)  solid;
+}
+.variableWrap main h2{
+    margin-bottom: 2% ;
+}
+.variableWrap main p{
+    margin-bottom: 5% ;
+}
+.variableWrap aside{
+    grid-area: as;
+    padding: 5%;
+    border: var(--pietBlack)  solid;
+    background-color: var(--pietBlue);
+}
+.variableWrap aside form{
+    padding: 10%;
+    border: var(--pietBlack)  solid;
+    background-color: white;
+}
+.variableWrap aside form input{
+    display: flex;
+    flex-direction: column;
+    border: 0.1rem solid;
+    padding: 0.4rem;
+}
+#applyButton{
+    background-color: var(--pietDarkGrey);
+    color: white;
+    border-color: var(--pietBlack);
 }
