@@ -133,10 +133,11 @@ function genHtml(inGrid) {
           let parNum = par.className;
           clickSquare(parNum, secNum)
         });
-
-        par.addEventListener("space", function() {
+        
+        par.addEventListener("contextmenu", function() {
             let parNum = par.className;
-            flag(parNum, secNum)
+            flag(secNum,parNum)
+            
         });
        
         
@@ -147,8 +148,58 @@ function genHtml(inGrid) {
       
       i++;
     }
+
+
+
+
+
+    
   }
 
+  let stopWatchId; 
+  let seconds = 0; 
+  
+  function startGame() {
+    stopWatchId = setTimeout(updateTime, 1000);
+  }
+  
+  function updateTime() {
+    seconds++;
+  
+    
+    document.querySelector(".gameWrap main header aisde").innerHTML = seconds;
+  
+    
+    timerId = setTimeout(updateTime, 1000);
+  }
+  
+  function gameWon() {
+    clearTimeout(timerId);
+    stId = null;
+  }
+//   let stopWatchId = 0;
+//   let seconds = 0;
+// function startGame() {
+//  stopWatchId = setTimeout(updateTime, 1000);
+// //   let startTime = Date.now();
+
+ 
+// //   stopWatchId = setInterval(function() {
+// //     let currentTime = Date.now();
+// //     let elapsedTime = currentTime - startTime;
+// //     let seconds = Math.floor(elapsedTime / 1000);
+
+    
+//     document.querySelector(".gameWrap main header aisde").innerHTML = seconds;
+// //   });
+// }
+
+// function gameWon() {
+//   clearInterval(stopWatchId);
+//   stopWatchId = null;
+// }
+// function updateTime() {
+//     seconds++;}
 
   function clickSquare(inP, inS){
 
@@ -188,6 +239,7 @@ function combClick(){
     gameArea.addEventListener("click",pause)
     let brushImg = document.querySelector("#brush img")
     brushImg.src = "img/brushPietBroken.svg"
+
 }
 function checkSquaresAround(inX,inY){
     let combCountR = 0
@@ -243,7 +295,7 @@ function checkSquaresAround(inX,inY){
                 // checkSquaresAround(inX-1,inY)
                 // any inX and inY works weridly
                 // The idea would some sytem that puts in all the squares around
-
+                // checkSquaresAround(inX-1,inY)
                 // Testing with chat gpt it talked about remake the data handling. 
                 // Unsure how it wanted it format as it just tried to queryselect a new type of data. 
 
@@ -267,31 +319,37 @@ function checkSquaresAround(inX,inY){
 }
 
 
-
+let flagColorMode = 0
 function flag(inS, inP) {
-    let flag = document.querySelector(`.${inS} .${inP}`);
-    
-    console
+    let cell = document.querySelector(`.${inS} .${inP}`);
+    let combMark = document.createElement("div")
+    if(flag.id !== "revealed"){
+        flagColorMode++
+        
+        if (flagColorMode === 1) {
+            
 
-    flag.addEventListener("mouseover", function(event) {
-      if (event.code === "Space" || event.key === " ") {
-        if (flagColorMode === 0) {
-          flag.id = "flagWhite";
-          console.log("White");
-        } else if (flagColorMode === 1) {
-          flag.id = "flagRed";
-          console.log("Red");
+            combMark.id = "flagRed";
         } else if (flagColorMode === 2) {
-          flag.id = "flagYellow";
-          console.log("Yellow");
-        } else {
-          flag.id = "flagBlue";
-          console.log("Blue");
+          combMark.id = "flagYellow";
+        } else if(flagColorMode === 3){
+          combMark.id = "flagBlue";
+        }else{
+            flagColorMode = 0;
+            combMark.id = ""
         }
-  
-        flagColorMode = (flagColorMode + 1) % 3;
-      }
-    });
+        if(cell.innerHTML){
+            cell.innerHTML = ""
+        }
+        cell.append(combMark)
+
+        console.log(flagColorMode)
+    }
+        
+        
+        
+      
+    
 }
 
 // With time contrastrians we could do on won state that the other are just reaveld as the flag color
@@ -319,4 +377,7 @@ function won(){
 
 genGrid(stockInRow,stockInCol)
 addComb(stockInCombs)
+
+
+
 

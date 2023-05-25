@@ -45,27 +45,6 @@ Why only 2 letter? To make it possible to see the grid in text form easier
     border: none;
 }
 
-/*.startWrap{
-    width: 100%;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 3fr 1fr 3fr 1fr 3fr 1fr 6fr 1fr 3fr 1fr 3fr 1fr;
-    grid-template-rows: 3fr 1fr 9fr 1fr 9fr 1fr 6fr 1fr 6fr 1fr;
-    grid-template-areas: 
-    ".  .  .  LI .  .  .  LI BY BY BY LI "
-    "LI LI LI LI LI LI LI LI LI LI LI LI "
-    ".  LI BR BR BR BR BR LI BY BY BY LI "
-    "LI LI BR BR BR BR BR LI LI LI LI LI "
-    ".  LI LI LI LI LI LI LI LI LI LI LI "
-    ".  LI BB BB BB LI  . LI  .  .  . LI "
-    "LI LI BB BB BB LI LI LI LI LI LI LI "
-    "SY LI BB BB BB LI .  LI BL BL BL LI "
-    "SY LI .  .  .  LI SB LI BL BL BL LI "
-    "LI LI LI LI LI LI LI LI LI LI LI LI "
-    ;
-    border: none;
-}
-*/
 .startOptions{
     grid-area: BR;
     background-color: var(--pietRed);
@@ -147,7 +126,6 @@ div, article{
 .gameWrap main {
     width: 90%;
     height: 90%;
-    background-color: brown;
     display: flex;
     flex-direction: column;
    
@@ -165,9 +143,12 @@ div, article{
     height: 5rem;
     width: 5rem;
     max-height: 90%;
+    text-align: center;
+
 }
 .gameWrap button img{
     height: 80%;
+    width: 80%;
 }
 .gameWrap main article{
     height: 100%;
@@ -191,6 +172,9 @@ div, article{
 
     box-sizing: border-box;
     border: var(--borderThickness) solid var(--pietBlack);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
 
@@ -208,11 +192,11 @@ div, article{
     background-color: var(--pietYellow);
 }
 
-
-
-#flagWhite{
-    background-color: white;
+.gameWrap article p div{
+    height: 50%;
+    width: 50%;
 }
+
 #flagYellow{
     background-color:var(--pietYellow);
 }
