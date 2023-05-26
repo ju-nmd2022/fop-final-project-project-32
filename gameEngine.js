@@ -335,9 +335,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
             if(revealedNum + 1>customSetupObj.col*customSetupObj.row-customSetupObj.combs){
                 won()
             }
-            
         }
-        
         
         for(let i= -1; i<2; i++){
 
@@ -360,8 +358,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
                         }    
                     }
                         
-                    
-                    
+
                 }
                 
 
@@ -443,8 +440,6 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
                 flagColorMode++
             }
             
-            
-            
         }
         
         if(flag.id !== "revealed"){
@@ -469,9 +464,6 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
             }
             
         }
-            
-            
-        
         
     }
 
@@ -496,12 +488,9 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
             }
         
         }
-        
 
-        
     }
 
-    
     function won(){
         clearInterval(timerVariable)
         let allCell = document.querySelectorAll(".gameWrap main article p")
@@ -533,6 +522,5 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
         genGrid(customSetupObj.row,customSetupObj.col)
         addComb(customSetupObj.combs) 
     }
-    
 
 }
