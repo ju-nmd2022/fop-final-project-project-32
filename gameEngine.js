@@ -1,8 +1,8 @@
 // Alot of comments are left as they are ground work for some fixes and good points of improve
 let setupObj ={
-    row: 20,
-    col:10,
-    combs: 20
+    row: 6,
+    col:8,
+    combs: 5
 }
 let grid = [];
 let savedGameData = {
