@@ -1,4 +1,4 @@
-
+// Alot of comments are left as they are ground work for some fixes and good points of improve
 let setupObj ={
     row: 20,
     col:10,
@@ -321,7 +321,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
         // Use this to understand what happens
         // The loop goes way to many times
         // aswell on numbers which it shouldn't
-        let howManyrun = 0
+        // let howManyrun = 0
 
 
         // selCell stands for selected cell
@@ -352,7 +352,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
 
             for(let z= -1; z<2; z++){
                 let tempX = z
-                if(inY+tempY> -1 && inY+tempY<grid.length-1){
+                if(inY+tempY> -1 && inY+tempY<grid.length){
                     
                     let lookCell = grid[inY+tempY][inX+tempX]
                     if(lookCell !== ""){
@@ -378,29 +378,35 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
                     }
                     
                     
-                    for(let q= -1; q<2; q++){
-                        let tempY = q
-                        for(let w= -1; w<2; w++){
-                            let tempX = w
-                            if(inY+tempY> -1 && inY+tempY<grid.length){
-                            
-                                if(inY+tempY>-1 && inY<grid.length-1){
-                                if(inX+tempX>-1 && inX< grid[0].length-1){
-                                    
-                                    // console.log(howManyrun)
-                                    howManyrun++
-                                    // console.log(document.querySelector(`.sec${inY+tempY} .par${inX+tempX}`))
-                                    
-        
+                    // The click emprty squares loop runs way 2 many time, not just jumping value but looking thorugh the 9 options. It does as not go all the way around as well.
+                    // The loop needs to be recode in someway to only run 9 times
+                    
+                    for(let u= 0; u<9; u++){
+                        for(let q= -1; q<2; q++){
+                            let tempY = q
+                            for(let w= -1; w<2; w++){
+                                let tempX = w
+                                if(inY+tempY> -1 && inY+tempY<grid.length){
+                                
+                                    if(inY+tempY>-1 && inY<grid.length-1){
+                                    if(inX+tempX>-1 && inX< grid[0].length-1){
+                                        
+                                        // console.log(howManyrun)
+                                        howManyrun++
+                                        // console.log(document.querySelector(`.sec${inY+tempY} .par${inX+tempX}`))
+                                        
+            
+                                        }
+                                        
                                     }
+                                        
+                                    
                                     
                                 }
-                                    
-                                
-                                
                             }
-                        }
+                        } 
                     }
+                    
 
 
                     
@@ -485,7 +491,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
         
         for(k = 0;k<row;k++){
             
-            for(t = 0;t<row+2;t++){
+            for(t = 0;t<col;t++){
                 // console.log(htmlCell(k,t))
             if(grid[k][t] === "R"){
                     htmlCell(k,t).id = "combRed"   
