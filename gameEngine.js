@@ -86,6 +86,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
         }else{
             genGrid(customSetupObj.row,customSetupObj.col)
             addComb(customSetupObj.combs) 
+
         }
         // firstClick = true
 
@@ -333,9 +334,17 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
             // console.log('I ran else')
         }
         
-        if(revealedNum + 1>setupObj.col*setupObj.row-setupObj.combs){
+        if(customSetupObj === null){
+            if(revealedNum + 1>setupObj.col*setupObj.row-setupObj.combs){
             won()
+            }
+        }else{
+            if(revealedNum + 1>customSetupObj.col*customSetupObj.row-customSetupObj.combs){
+                won()
+            }
+            
         }
+        
         
         for(let i= -1; i<2; i++){
 
