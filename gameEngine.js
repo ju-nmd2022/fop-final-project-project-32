@@ -47,6 +47,7 @@ if(document.querySelector('title').innerHTML === "settings"){
 
 
 let revealedNum = 0
+// First click check works funky as the grid sometimes does remake well, aswell click over any combs also happen from which we don't know yet. I will let these stay.
 // let firstClick = true
 
 if(document.querySelector('title').innerHTML === "Piet miner"){
@@ -55,7 +56,6 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
 
     function genGrid(inRow,inCol){
         
-        let bombCount = 0
         let i = 0
         while(i < inRow){
             let z = 0
@@ -101,7 +101,6 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
 
     // Color bomb put togheter is Comb.
     function addComb(inComb){
-        
 
         // Random color for the Comb
         function colRand(){
@@ -118,14 +117,11 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
         }
         
 
-
-        // Random spot chosen
-
         let rowCount = grid.length
         let colCount = grid[0].length
         let combCount = 0
 
-        // for loop here
+        
         while(combCount < inComb){
             let randRow = Math.floor(Math.random()*rowCount)
             let randCol = Math.floor(Math.random()*colCount)
@@ -145,6 +141,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
 
 
     function genHtml(inGrid){
+        // We tried to save the html and put it back if player returns and if that work we would also save the array with the grid. Didn't have time to fix this with other more pressing things. 
         // if(localStorage.getItem("gameArea") !== null){
         let row = inGrid.length
             let col = inGrid[0].length
@@ -154,7 +151,6 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
                 let sec = document.createElement("section")
                 sec.classList.add(`${i}sec`)
                 gameArea.appendChild(sec)
-                // here it should put the sec into the html
                 while(j < col){
                     var par = document.createElement("p")
                     par.classList.add(`${j}par`)
@@ -196,7 +192,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
                 
             par.addEventListener("click", function() {
             let parNum = par.className;
-            clickSquare(parNum, secNum,false)
+            clickCell(parNum, secNum,false)
             });
             
             par.addEventListener("contextmenu", function() {
@@ -213,9 +209,6 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
         
         i++;
         }
-
-
-
 
 
         
@@ -246,10 +239,10 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
     }
 
 
-    function clickSquare(inP, inS, autoClick){
-        let clickedSquare = document.querySelector(`.${inS} .${inP}`)
+    function clickCell(inP, inS, autoClick){
+        let clickedCell = document.querySelector(`.${inS} .${inP}`)
 
-        // Needs to be remade, works only up to 9
+
         let numP = parseInt(inP.substring(3))
         let numS = parseInt(inS.substring(3))
 
@@ -257,11 +250,11 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
             // if(firstClick ===false){
                 if(autoClick === false){
                     if(grid[numS][numP] === "R"){
-                        clickedSquare.id = "combRed"   
+                        clickedCell.id = "combRed"   
                     }else if (grid[numS][numP] === "Y") {
-                        clickedSquare.id = "combYellow"
+                        clickedCell.id = "combYellow"
                     } else {
-                        clickedSquare.id = "combBlue"
+                        clickedCell.id = "combBlue"
                 }
                     combClick()
                 }  
@@ -275,15 +268,15 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
             //         grid[randRow][randCol] = tempCol
                     
             //     } 
-            //     clickSquare(inP, inS, true)
+            //     clickCell(inP, inS, true)
             //     firstClick = false
             // }
             
             
             
         }else{
-            checkSquaresAround(numP,numS);
-        //    clickedSquare.id = "revealed" 
+            checkCellsAround(numP,numS);
+        //    clickedCell.id = "revealed" 
 
         }
         
@@ -313,7 +306,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
 
 
 
-    function checkSquaresAround(inX,inY){
+    function checkCellsAround(inX,inY){
         let combCountR = 0
         let combCountY = 0
         let combCountB = 0
@@ -378,34 +371,34 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
                     }
                     
                     
-                    // The click emprty squares loop runs way 2 many time, not just jumping value but looking thorugh the 9 options. It does as not go all the way around as well.
+                    // The click emprty cells loop runs way 2 many time, not just jumping value but looking thorugh the 9 options. It does as not go all the way around as well.
                     // The loop needs to be recode in someway to only run 9 times
                     
-                    for(let u= 0; u<9; u++){
-                        for(let q= -1; q<2; q++){
-                            let tempY = q
-                            for(let w= -1; w<2; w++){
-                                let tempX = w
-                                if(inY+tempY> -1 && inY+tempY<grid.length){
+                    // for(let u= 0; u<9; u++){
+                    //     for(let q= -1; q<2; q++){
+                    //         let tempY = q
+                    //         for(let w= -1; w<2; w++){
+                    //             let tempX = w
+                    //             if(inY+tempY> -1 && inY+tempY<grid.length){
                                 
-                                    if(inY+tempY>-1 && inY<grid.length-1){
-                                    if(inX+tempX>-1 && inX< grid[0].length-1){
+                    //                 if(inY+tempY>-1 && inY<grid.length-1){
+                    //                 if(inX+tempX>-1 && inX< grid[0].length-1){
                                         
-                                        // console.log(howManyrun)
-                                        howManyrun++
-                                        // console.log(document.querySelector(`.sec${inY+tempY} .par${inX+tempX}`))
+                    //                     // console.log(howManyrun)
+                    //                     howManyrun++
+                    //                     // console.log(document.querySelector(`.sec${inY+tempY} .par${inX+tempX}`))
                                         
             
-                                        }
+                    //                     }
                                         
-                                    }
+                    //                 }
                                         
                                     
                                     
-                                }
-                            }
-                        } 
-                    }
+                    //             }
+                    //         }
+                    //     } 
+                    // }
                     
 
 
@@ -493,7 +486,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
             
             for(t = 0;t<col;t++){
                 // console.log(htmlCell(k,t))
-            if(grid[k][t] === "R"){
+                if(grid[k][t] === "R"){
                     htmlCell(k,t).id = "combRed"   
                 }else if (grid[k][t] === "Y") {
                     htmlCell(k,t).id = "combYellow"
