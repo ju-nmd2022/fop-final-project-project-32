@@ -1,0 +1,279 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+:root {
+    --pietBlue: rgb(50, 81, 255);
+    --pietYellow: rgb(243, 247, 6);
+    --pietRed: rgb(249, 17, 17);
+    --pietBlack:rgb(0,0,0);
+    --pietDarkGrey:rgb(105, 105, 105);
+    --pietLightGrey:rgb(225, 225, 225);
+    --borderThickness: 0.3rem ;
+}
+.Look{
+    width: 80vw;
+}
+/* 
+The grid is based of one of Piet Mondrain paintings, see in misc folder
+The naming system is:
+The first letter refer if it's the Big or Small
+Then the Color after
+the expation to the rule is BL as big black would have same as big blue
+thus blue is Bl
+
+Why only 2 letter? To make it possible to see the grid in text form easier
+
+*/
+
+ .startWrap{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 2fr 6fr 2fr 2fr 1fr;
+    grid-template-rows: 3fr 5fr 5fr 2fr 2fr 1fr 2fr;
+    grid-template-areas: 
+    ".  .  .  .  BY BY . "
+    ".  BR BR BR BY BY . "
+    ".  BR BR BR .  .  . "
+    ".  BB BB .  .  .  . "
+    "SY BB BB .  BL BL SR"
+    "SY .  .  SB BL BL SR"
+    "SY .  .  .  .  .  SR"
+    ;
+    border: none;
+}
+
+.startOptions{
+    grid-area: BR;
+    background-color: var(--pietRed);
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+    align-items: center;
+    gap: 2rem;
+}
+.startOptions button{
+    border: var(--borderThickness) solid ;
+    padding: 1rem;
+    width: 15rem;
+}
+.startOptions button a{
+    color: inherit;
+    text-decoration: none;
+}
+div, article{
+    border: var(--borderThickness) solid ;
+    
+}
+.startWrap div{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+.colorBlock1{
+    grid-area: BY;
+    background-color: var(--pietYellow);
+}
+
+.colorBlock2{
+    grid-area: SY;
+    background-color: var(--pietYellow);
+}
+
+.colorBlock3{
+    grid-area: BB;
+    background-color: var(--pietBlack);
+}
+
+.colorBlock4{
+    grid-area: SB;
+    background-color:var(--pietBlack) ;
+}
+
+.colorBlock5{
+    grid-area: BL;
+    background-color: var(--pietBlue);
+}
+
+.colorBlock6{
+    grid-area: SR;
+    background-color: var(--pietRed);
+}
+
+
+
+/* -------------------------------------------- */
+/*                   Game                      */
+/* ------------------------------------------ */
+
+
+.gameWrap{
+    height: 100vh;
+    width: 100%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.gameWrap main {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+   
+}
+.gameWrap main header{
+    height: 15%;
+    background-color: var(--pietLightGrey); 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0rem 2rem;
+}
+
+.gameWrap main header button{
+    height: 5rem;
+    width: 5rem;
+    max-height: 90%;
+    text-align: center;
+
+}
+.gameWrap button img{
+    height: 80%;
+    width: 80%;
+}
+
+.gameWrap header aside h2{
+    min-width: 5rem;
+   display: flex;
+   justify-content: end;
+}
+.gameWrap main article{
+    height: 100%;
+    background-color: var(--pietDarkGrey);
+    display: flex;
+    flex-direction: column;
+
+}
+.gameWrap article section{
+    background-color: beige;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    
+
+}
+.gameWrap article section p{
+    background-color: var(--pietDarkGrey);
+    height: 100%;
+    width: 100%;
+
+    box-sizing: border-box;
+    border: var(--borderThickness) solid var(--pietBlack);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#revealed{ 
+    background-color: white ;
+
+}
+#combRed{
+    background-color:var(--pietRed);
+}
+#combBlue{
+    background-color:var(--pietBlue);
+}
+#combYellow{
+    background-color: var(--pietYellow);
+}
+
+.gameWrap article p div{
+    height: 50%;
+    width: 50%;
+}
+
+#flagYellow{
+    background-color:var(--pietYellow);
+}
+
+#flagBlue{
+    background-color:var(--pietBlue);
+}
+
+#flagRed{
+    background-color: var(--pietRed);
+}
+
+/* -------------------------------------------- */
+/*                   variables                 */
+/* ------------------------------------------ */
+
+.variableWrap{
+    border: none;
+    height: 100vh;
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 5fr;
+    /* he stands for header, ma stands for main and as stands for aside */
+    grid-template-areas: 
+    "he he"
+    "ma as"
+    ;
+}
+.variableWrap header{
+    grid-area: he;
+    display: flex;
+    align-items: center;
+}
+.variableWrap header a{
+    width: 100%;
+    height: 10rem;
+    margin-left:5% ;
+    display: flex;
+    align-items: center
+    
+}
+.variableWrap header a img{
+    height: 70%;
+}
+.variableWrap main{
+    grid-area: ma;
+    padding: 5%;
+    border: var(--pietBlack)  solid;
+}
+.variableWrap main h2{
+    margin-bottom: 2% ;
+}
+.variableWrap main p{
+    margin-bottom: 5% ;
+}
+.variableWrap aside{
+    grid-area: as;
+    padding: 5%;
+    border: var(--pietBlack)  solid;
+    background-color: var(--pietBlue);
+}
+.variableWrap aside form{
+    padding: 10%;
+    border: var(--pietBlack)  solid;
+    background-color: white;
+}
+.variableWrap aside form input{
+    display: flex;
+    flex-direction: column;
+    border: 0.1rem solid;
+    padding: 0.4rem;
+}
+#applyButton{
+    background-color: var(--pietDarkGrey);
+    color: white;
+    border-color: var(--pietBlack);
+}
