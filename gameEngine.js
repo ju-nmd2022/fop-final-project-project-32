@@ -47,7 +47,7 @@ if(document.querySelector('title').innerHTML === "settings"){
 
 
 let revealedNum = 0
-let firstClick = false
+// let firstClick = true
 
 if(document.querySelector('title').innerHTML === "Piet miner"){
     
@@ -87,7 +87,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
             genGrid(customSetupObj.row,customSetupObj.col)
             addComb(customSetupObj.combs) 
         }
-        firstClick = false
+        // firstClick = true
 
     }
 
@@ -135,8 +135,10 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
             }    
             
         }
-
-        genHtml(grid);
+        // if(firstClick === true){
+            genHtml(grid);    
+        // }
+       
 
     }
 
@@ -251,16 +253,31 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
         let numS = parseInt(inS.substring(3))
 
         if(grid[numS][numP] != ""){
-            if(autoClick === false){
-                if(grid[numS][numP] === "R"){
-                    clickedSquare.id = "combRed"   
-                }else if (grid[numS][numP] === "Y") {
-                    clickedSquare.id = "combYellow"
-                } else {
-                    clickedSquare.id = "combBlue"
-            }
-                combClick()
-            }
+            // if(firstClick ===false){
+                if(autoClick === false){
+                    if(grid[numS][numP] === "R"){
+                        clickedSquare.id = "combRed"   
+                    }else if (grid[numS][numP] === "Y") {
+                        clickedSquare.id = "combYellow"
+                    } else {
+                        clickedSquare.id = "combBlue"
+                }
+                    combClick()
+                }  
+            // }else{
+            //     let tempCol = grid[numS][numP]
+            //     grid[numS][numP] = ""
+            //     let randRow = Math.floor(Math.random()*grid.length)
+            //     let randCol = Math.floor(Math.random()*grid[0].length)
+
+            //     if(grid[randRow][randCol] === ""){
+            //         grid[randRow][randCol] = tempCol
+                    
+            //     } 
+            //     clickSquare(inP, inS, true)
+            //     firstClick = false
+            // }
+            
             
             
         }else{
@@ -268,22 +285,23 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
         //    clickedSquare.id = "revealed" 
 
         }
-        // savedGameData.gameArea = document.querySelector(".gameWrap main article").innerHTML
-        // let savedGameDataJSON = JSON.stringify(savedGameData)
-        // localStorage.setItem("gameAreaStorage",savedGameDataJSON)
+        
+        
     }
 
     function combClick(){
-        let i = 0
+        let pauseState = true
         function pause(){
             clearInterval(timerVariable)
-            if(i>0){
+            if(pauseState === false){
                 resetCanvas() 
                 gameArea.removeEventListener("click",pause)
                 brushImg.src = "img/brushPiet.svg"
-                
+                // firstClick = true
+            }else{
+               pauseState = false
             }
-            i++
+            
         }
         gameArea.addEventListener("click",pause)
         let brushImg = document.querySelector("#brush img")
@@ -459,7 +477,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
         for(k = 0;k<row;k++){
             
             for(t = 0;t<row+2;t++){
-                console.log(htmlCell(k,t))
+                // console.log(htmlCell(k,t))
             if(grid[k][t] === "R"){
                     htmlCell(k,t).id = "combRed"   
                 }else if (grid[k][t] === "Y") {
