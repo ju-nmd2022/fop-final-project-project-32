@@ -1,4 +1,72 @@
 // Alot of comments are left as they are ground work for some fixes and good points of improve
+let timerInterval; 
+let timerType = "countdown"; 
+let totalSeconds = 0; 
+let countdownTime = 60; 
+
+let isTimerRunning = false;
+
+function startTimer() {
+    if (!isTimerRunning) {
+        isTimerRunning = true;
+        timerInterval = setInterval(countUpTimer, 1000);
+    }
+    clearInterval(timerInterval); 
+    if (timerType === "countdown") {
+        startCountdownTimer();
+    } else if (timerType === "countup") {
+        startCountupTimer();
+    }
+}
+function startCountdownTimer() {
+    timerInterval = setInterval(function () {
+        if (countdownTime > 0) {
+            countdownTime--;
+            updateTimerDisplay();
+        } else {
+            clearInterval(timerInterval);
+        }
+    }, 1000);
+}
+function startCountupTimer() {
+    timerInterval = setInterval(function () {
+        totalSeconds++;
+        updateTimerDisplay();
+    }, 1000);
+}
+function resetTimer() {
+    stopTimer();
+    totalSeconds = 0;
+    countdownTime = 60;
+    updateTimerDisplay();
+}
+function updateTimerDisplay() {
+    let timer = document.querySelector(".gameWrap main header aside h2");
+    if (timerType === "countdown") {
+        let minutes = Math.floor(countdownTime / 60);
+        let seconds = countdownTime % 60;
+        timer.innerHTML = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    } else if (timerType === "countup") {
+        let minutes = Math.floor(totalSeconds / 60);
+        let seconds = totalSeconds % 60;
+        timer.innerHTML = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+}
+
+function changeTimerType() {
+    let timerTypeSelect = document.getElementById("timerType");
+    timerType = timerTypeSelect.value;
+    resetTimer();
+}
+
+function changeTimerValue() {
+    let timerValueInput = document.getElementById("timerValue");
+    countdownTime = parseInt(timerValueInput.value);
+    resetTimer();
+}
+document.getElementById("startTimerButton").addEventListener("click", startTimer);
+
+
 let setupObj ={
     row: 6,
     col:8,
@@ -73,7 +141,9 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
     }
 
     function resetCanvas(){
-    resettTimer()
+    stopTimer();
+    totalSeconds = 0;
+    revealedNum = 0;
         let allCell = document.querySelectorAll(".gameWrap main article p")
         allCell.forEach(function(cell) {
             cell.id = ""
@@ -214,19 +284,14 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
         
     }
     
-    let  timerVariable = setInterval(countUpTimer, 1000);
+    let  timerInterval = setInterval(countUpTimer, 1000);
     let totalSeconds = 0
-    
-    function resettTimer(){
-        totalSeconds = 0;
-    } 
 
-    function startTimer(){
-    timerVariable = setInterval(countUpTimer, 1000);
-    }
+    
 
     function stopTimer(){
-        clearInterval(timerVariable)
+        clearInterval(timerInterval);
+        isTimerRunning = false;
     }
 
     function countUpTimer() {
@@ -286,7 +351,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
     function combClick(){
         let pauseState = true
         function pause(){
-            clearInterval(timerVariable)
+            clearInterval(timerInterval)
             if(pauseState === false){
                 resetCanvas() 
                 gameArea.removeEventListener("click",pause)
@@ -492,7 +557,7 @@ if(document.querySelector('title').innerHTML === "Piet miner"){
     }
 
     function won(){
-        clearInterval(timerVariable)
+        clearInterval(timerInterval)
         let allCell = document.querySelectorAll(".gameWrap main article p")
         allCell.forEach(function(cell) {
             cell.innerHTML = ""
