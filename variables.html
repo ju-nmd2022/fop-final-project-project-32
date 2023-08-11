@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>settings</title>
+    <link rel="icon" type="image/x-icon" href="img/pietminerPotra.svg">
+    <link rel="stylesheet" href="css/stylesheet.css">
+</head>
+<body>
+    <div class="variableWrap">
+      <header>
+        <a href="index.html"><img src="img/backPietBigger.svg" alt=""></header> </a>
+      </header>
+      <main>
+        <h2>How to play</h2>
+        <p>
+            Piet miner is a mix of minesweeper and Piet Mondrian paintings
+            In this game you will try to avoid combs, which stands for color bombs. they are in three different colors, red, yellow and blue. If you miscalculate and accidentally click on a comb, you lose.
+            to win you need to reveal all the cells, at the end you will have your own painting
+        </p>
+        <p> 
+          <h3>For controls</h3>
+            To reveal a cell, you press left click over the cell.
+            To mark cells as potential combs right click (for easier understanding of the canvas).
+            One right click equal a red mark,
+            Two right clicks equal a yellow mark,
+            Three right clicks equal a blue mark.
+            and a fourth click to remove the mark.
+        </p>
+      </main>
+      <aside>
+        <form>
+          <label for="combs">Combs:</label>
+          <input type="text" id="combs" name="combs" placeholder="5"><br><br>
+      
+          <label for="rows">Rows:</label>
+          <input type="number" id="rows" name="rows" placeholder="6"><br><br>
+      
+          <label for="columns">Columns:</label>
+          <input type="number" id="columns" name="columns" placeholder="8"><br><br>
+           
+        <!-- tried to make the user chose between count up or count down -->
+         <!-- <label for="timerType">timer Mode: </label>
+          <select name="timerType" id="timerType" onchange="changeTimerType()">
+           <option value="countdown">countdown</option>
+           <option value="countup">countup</option>
+          </select>
+
+          <label for="timerValue">timer Value:</label>
+          <input type="number" id="timerValue" name="timerValue" value="60" min="1" onchange="changeTimerValue()"> -->
+          <input type="button" value="Apply" onclick="applySettings()" id="applyButton">
+        </form>
+      </aside>
+    </div>  
+    <script src="gameEngine.js"></script>
+</body>
+</html>
